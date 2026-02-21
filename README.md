@@ -1,5 +1,8 @@
 # Prompt Arena ⚔️
 
+[![Deploy to GitHub Pages](https://github.com/a07458666/PromptArena/actions/workflows/deploy.yml/badge.svg)](https://github.com/a07458666/PromptArena/actions/workflows/deploy.yml)
+[![Live Demo](https://img.shields.io/badge/demo-live-blue)](https://a07458666.github.io/PromptArena/)
+
 A powerful, local-first prompt engineering and LLM evaluation tool. Rapidly compare different prompt variants and models side-by-side using your own datasets.
 
 ![Setup Interface](demo/setup.png)
