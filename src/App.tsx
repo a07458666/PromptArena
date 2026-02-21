@@ -50,7 +50,7 @@ function App() {
       model: 'gemini-3-flash-preview',
       temperature: 0.7,
       topP: 1,
-      maxTokens: 1000,
+      maxTokens: 2048,
       repetitions: 1
     },
     columns: []
