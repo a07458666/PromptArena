@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Settings, Github, Info, Trash2, Zap, Timer, Layers } from 'lucide-react';
 import { db } from '../../db/db';
-import { clsx } from 'clsx';
 
 export const SettingsPopover: React.FC = () => {
     const [concurrency, setConcurrency] = useState(() =>
