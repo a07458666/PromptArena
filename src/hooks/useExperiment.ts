@@ -38,11 +38,17 @@ export function useExperiment(experimentId: string | null) {
         if (!experiment || !rows.length) return;
 
         const provider = experiment.modelConfig.provider;
+
+        // Priority: localStorage (UI) -> sessionStorage (Legacy) -> .env
+        const uiKey = localStorage.getItem(`${provider}_api_key`);
+        const sessionKey = sessionStorage.getItem('api_key'); // Generic fallback
         const envKey = provider === 'openai' ? import.meta.env.VITE_OPENAI_API_KEY :
             provider === 'anthropic' ? import.meta.env.VITE_ANTHROPIC_API_KEY :
                 provider === 'google' ? import.meta.env.VITE_GOOGLE_API_KEY : '';
 
-        if (!apiKey && !envKey) {
+        const effectiveKey = uiKey || apiKey || sessionKey || envKey;
+
+        if (!effectiveKey) {
             alert(`Missing API key for ${provider}. Please set it in the settings or .env file.`);
             return;
         }
@@ -52,7 +58,7 @@ export function useExperiment(experimentId: string | null) {
         const queue = new GenerationQueue(
             experiment,
             rows,
-            apiKey,
+            effectiveKey,
             (update) => setProgress(update)
         );
 
